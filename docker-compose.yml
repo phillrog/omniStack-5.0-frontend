@@ -3,7 +3,7 @@ version: '3.4'
 services:
 
   omnistack5-portal:
-    image: omnistack5-portal:prod
+    image: phillrog/omnistack5-portal:prod
     build:
       context: .
       dockerfile: Dockerfile
