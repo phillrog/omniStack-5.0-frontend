@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build_deploy_api:
+  build_deploy_portal:
     docker:
       - image: circleci/node:latest
         user: root
@@ -79,5 +79,5 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - build_deploy_api
+      - build_deploy_portal
 
