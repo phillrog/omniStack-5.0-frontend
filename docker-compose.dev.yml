@@ -2,8 +2,8 @@ version: '3.4'
 
 services:
 
-  tweets-portal:
-    image: tweetsportal
+  omnistack5-portal:
+    image: omnistack5-portal:dev
     build:
       context: .
       dockerfile: dev.dockerfile
