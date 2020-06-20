@@ -22,7 +22,7 @@ RUN npm run build --prod
 # --===\\ FINAL // ===-- #
 FROM nginx:1.15.12-alpine AS final
 
-EXPOSE $PORT
+EXPOSE 4001
 
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build /app/build /usr/share/nginx/html
