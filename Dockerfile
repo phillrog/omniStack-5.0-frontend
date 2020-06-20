@@ -23,8 +23,8 @@ RUN npm run build --prod
 FROM nginx:1.15.12-alpine AS final
 
 RUN rm -rf /usr/share/nginx/html/*
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf?
-COPY --from=build /app/buildÇÇ,;.~Ç]/;/]]~~//] /usr/share/nginx/html
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /app/build /usr/share/nginx/html
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
