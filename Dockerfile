@@ -22,10 +22,14 @@ RUN npm run build --prod
 # --===\\ FINAL // ===-- #
 FROM nginx:1.15.12-alpine AS final
 
+EXPOSE $PORT
+
 RUN rm -rf /usr/share/nginx/html/*
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/build /usr/share/nginx/html
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+RUN chmod +x /etc/nginx/conf.d/default.conf
 
+CMD   sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && \
+      nginx -g 'daemon off;'
+      
