@@ -12,3 +12,11 @@ Execute: ```docker-compose up --build```
 
 https://omnistack5-portal.herokuapp.com/
 
+# API
+A API está no repositório [https://github.com/phillrog/omniStack-5.0-backend](https://github.com/phillrog/omniStack-5.0-backend)
+
+# Resultado
+
+![inicio](https://image.prntscr.com/image/eelXGtfYTPqFdC4yr1km_g.png)
+
+![tweets](https://image.prntscr.com/image/lluSH0kIR96Xcg8OLmgdNA.png)
