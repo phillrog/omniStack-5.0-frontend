@@ -5,6 +5,8 @@ import twitterLogo from '../twitter.svg';
 
 import api from '../services/tweets';
 
+import Tweet from '../components/Tweet';
+
 export default class Timeline extends Component {
 
   endpoints = {
@@ -53,6 +55,16 @@ export default class Timeline extends Component {
            >
           </textarea>
         </form>
+
+        { this.state.tweets.map(tweet => 
+          <ul className="tweet-list">
+           <Tweet 
+            tweet={tweet}
+            key={tweet._id}
+           ></Tweet>
+          </ul>
+          )
+        }
       </div>
     );
   }
