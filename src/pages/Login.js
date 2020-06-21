@@ -12,12 +12,24 @@ export default class Login extends Component {
     this.setState({userName: event.target.value});
   }
 
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const { userName } = this.state;
+
+    if(!userName.length) return;
+
+    localStorage.setItem('@GoTwitter:userName', userName);
+
+    this.props.history.push('/timeline')
+  }
+
   render() {
     return (
       <div className="login-wrapper">
         <img src={twitterLogo} alt="GoTwitter" />
         
-        <form>
+        <form onSubmit={this.handleSubmit}> 
           <input 
             value={this.state.userName}
             onChange={this.handleInputChange}
@@ -25,7 +37,7 @@ export default class Login extends Component {
 
           <button type="submit">Entrar</button>
 
-    <label>{this.state.userName}</label>
+    
         </form>
       </div>
     );
