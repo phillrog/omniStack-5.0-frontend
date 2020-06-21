@@ -6,8 +6,21 @@ import twitterLogo from '../twitter.svg';
 import api from '../services/tweets';
 
 export default class Timeline extends Component {
+
+  endpoints = {
+    tweets: 'tweets',
+    likes: 'likes'
+  }
+
   state = {
+    tweets: [],
     newTweet: '',
+  }
+
+  async componentDidMount() {
+    const response = await api.get(this.endpoints.tweets);
+
+    this.setState({tweets: response.data});
   }
 
   handleInputChange = (event) =>{
@@ -21,7 +34,7 @@ export default class Timeline extends Component {
 
     const author = localStorage.getItem('@GoTwitter:userName');
 
-    await api.post('tweets', { content, author });
+    await api.post(this.endpoints.tweets, { content, author });
 
     this.setState({newTweet: ""});
   }
