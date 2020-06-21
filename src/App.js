@@ -1,9 +1,16 @@
 import React from 'react';
-
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Timeline from './pages/Timeline';
 
 function App() {
   return (
-      <h1>Hello World - HEROKU</h1>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={Login}></Route>
+          <Route path="/timeline" component={Timeline}></Route>
+        </Switch>
+      </BrowserRouter>
   );
 }
 
