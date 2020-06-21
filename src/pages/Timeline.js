@@ -18,7 +18,7 @@ export default class Timeline extends Component {
 
   async componentDidMount() {
     this.subscribeToEvents();
-    
+
     const response = await api.get(api.endpoints.tweets);
 
     this.setState({tweets: response.data});
@@ -41,7 +41,7 @@ export default class Timeline extends Component {
   }
 
   subscribeToEvents = () => {
-    const io = socket(api.baseURL);
+    const io = socket(`http://omnistack5-api.herokuapp.com`);
 
     io.on('tweet', data => {
       this.setState({tweets: [data, ...this.state.tweets]})
