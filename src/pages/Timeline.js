@@ -12,7 +12,15 @@ export default class Timeline extends Component {
     this.setState({newTweet: event.target.value});
   }
 
-  handleNewTweet = (event) => {}
+  handleNewTweet = (event) => {
+    if (event.keyCode != 13) return;
+
+    const content = this.state.newTweet;
+
+    const author = localStorage.getItem('@GoTwitter:userName');
+
+    
+  }
 
   render() {
     return (
