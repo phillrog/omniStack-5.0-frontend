@@ -8,19 +8,14 @@ import api from '../services/tweets';
 import Tweet from '../components/Tweet';
 
 export default class Timeline extends Component {
-
-  endpoints = {
-    tweets: 'tweets',
-    likes: 'likes'
-  }
-
+ 
   state = {
     tweets: [],
     newTweet: '',
   }
 
   async componentDidMount() {
-    const response = await api.get(this.endpoints.tweets);
+    const response = await api.get(api.endpoints.tweets);
 
     this.setState({tweets: response.data});
   }
@@ -36,7 +31,7 @@ export default class Timeline extends Component {
 
     const author = localStorage.getItem('@GoTwitter:userName');
 
-    await api.post(this.endpoints.tweets, { content, author });
+    await api.post(api.endpoints.tweets, { content, author });
 
     this.setState({newTweet: ""});
   }
