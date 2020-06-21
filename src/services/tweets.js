@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://omnistack5-api.herokuapp.com/api'
+    baseURL: 'https://omnistack5-api.herokuapp.com'
 });
 
 api.endpoints = {
-    tweets: 'tweets',
-    likes: 'likes'
+    tweets: '/api/tweets',
+    likes: '/api/likes'
   };
 
 export default api;

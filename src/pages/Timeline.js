@@ -7,6 +7,8 @@ import api from '../services/tweets';
 
 import Tweet from '../components/Tweet';
 
+import socket from 'socket.io-client';
+
 export default class Timeline extends Component {
  
   state = {
@@ -15,6 +17,8 @@ export default class Timeline extends Component {
   }
 
   async componentDidMount() {
+    this.subscribeToEvents();
+    
     const response = await api.get(api.endpoints.tweets);
 
     this.setState({tweets: response.data});
@@ -36,6 +40,21 @@ export default class Timeline extends Component {
     this.setState({newTweet: ""});
   }
 
+  subscribeToEvents = () => {
+    const io = socket(api.baseURL);
+
+    io.on('tweet', data => {
+      this.setState({tweets: [data, ...this.state.tweets]})
+    });
+
+    io.on('like', data => {
+      this.setState({
+        tweets: this.state.tweets.map(tweet => tweet._id == data._id ? data : tweet
+        )
+      })
+    });
+  }
+
   render() {
     return (
       <div className="timeline-wrapper">
@@ -51,15 +70,15 @@ export default class Timeline extends Component {
           </textarea>
         </form>
 
+        <ul className="tweet-list">
         { this.state.tweets.map(tweet => 
-          <ul className="tweet-list">
            <Tweet 
             tweet={tweet}
             key={tweet._id}
            ></Tweet>
-          </ul>
           )
         }
+        </ul>
       </div>
     );
   }
