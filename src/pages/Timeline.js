@@ -44,13 +44,16 @@ export default class Timeline extends Component {
     const io = socket(`https://omnistack5-api.herokuapp.com`);
 
     io.on('tweet', data => {
-      this.setState({tweets: [data, ...this.state.tweets]})
+      const tweets = this.state.tweets.map(
+        tweet => (tweet._id === data._id) ? data : tweet)
+      
+      this.setState({tweets: [...tweets ]})
     });
 
     io.on('like', data => {
       this.setState({
-        tweets: this.state.tweets.map(tweet => tweet._id == data._id ? data : tweet
-        )
+        tweets: this.state.tweets.map(
+          tweet => (tweet._id === data._id) ? data : tweet)
       })
     });
   }

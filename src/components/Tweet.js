@@ -14,7 +14,7 @@ export default class Tweet extends Component {
   render()  {
       const { tweet } = this.props;
       return (
-        <li key={tweet._id} className="tweet">
+        <li className="tweet">
             <strong>{tweet.author}</strong>
             <p>{tweet.content}</p>
             <button type="button">
